@@ -1,0 +1,41 @@
+{% extends 'index.html'%}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/vendors/select2/select2.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-5">Smena Tahrirlash</h4>
+          <form class="form" method="post" action="{% url 'shift-update' shift.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputUsername1">Boshlanish vaqti {{ shift.start_time }}</label>
+                <input value="{{ shift.start_time }}" name="start-time" type="time" class="form-control" id="exampleInputUsername1" placeholder="Boshlanish vaqti" required>
+              </div>
+  
+              <div class="form-group">
+                  <label for="exampleInputUsername1">Tugash vaqti {{ shift.end_time }}</label>
+                  <input value="{{ shift.end_time }}" name="end-time" type="time" class="form-control" id="exampleInputUsername1" placeholder="Tugash vaqti" required>
+              </div>
+            <button type="submit" class="btn btn-gradient-primary me-2">Saqlash</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% block js %}
+<script src="{% static 'assets/vendors/select2/select2.min.js' %}"></script>
+<script src="{% static 'assets/vendors/typeahead.js/typeahead.bundle.min.js' %}"></script>
+{% endblock %}

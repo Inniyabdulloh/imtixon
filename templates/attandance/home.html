@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/vendors/font-awesome/css/font-awesome.min.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Xodimlar davomati</h4>
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th> Ism Famailiya</th>
+                  <th> smenasi </th>
+                  <th> keldi </th>
+                  <th> keltdi </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for attandance in attandance_list %}
+                <tr>
+                  <td>{{ attandance.staff }} </td>
+                  <td>{{ attandance.staff.shift}}</td>   
+                  <td>{{ attandance.check_in}}</td>            
+                  <td>{{ attandance.check_out}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+
+{% block js %}
+{% endblock %}

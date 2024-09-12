@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/vendors/font-awesome/css/font-awesome.min.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Smena Jadvali</h4>
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Ism Familiya</th>
+                  <th>smena</th> 
+                </tr>
+              </thead>
+              <tbody>
+                {% for staffshift in staffshift_list %}
+                <tr>
+                  <td>{{ staffshift.staff }} </td>
+                  <td>{{ staffshift.shift }} </td>
+                  <td><a href="{% url 'staffshift-update' staffshift.id %}"><i class="fa fa-pencil-square"></i></a></td>   
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+
+{% block js %}
+{% endblock %}

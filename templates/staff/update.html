@@ -1,0 +1,56 @@
+{% extends 'index.html'%}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/vendors/select2/select2.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-5">Xodim yaratsih</h4>
+          <form class="form" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputUsername1">Ism</label>
+              <input value="{{staff.first_name}}" name="first_name" type="text" class="form-control" id="exampleInputUsername1" placeholder="Ism" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Familiya</label>
+              <input value="{{staff.last_name}}" name="last_name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Familiya" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Yosh</label>
+              <input value="{{staff.age}}" name="age" type="text" class="form-control" id="exampleInputPassword1" placeholder="Yosh" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputConfirmPassword1">Telefon</label>
+              <input value="{{staff.phone}}" name="phone" type="text" class="form-control" id="exampleInputConfirmPassword1" placeholder="Telefon" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputConfirmPassword1">Lavozimi</label>
+              <select value="{{staff.position.id}}" class="form-control" name="position" required>
+                {% for position in position_list %}
+                <option value={{ position.id }}>{{ position.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" class="btn btn-gradient-primary me-2">Saqlash</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% block js %}
+<script src="{% static 'assets/vendors/select2/select2.min.js' %}"></script>
+<script src="{% static 'assets/vendors/typeahead.js/typeahead.bundle.min.js' %}"></script>
+{% endblock %}

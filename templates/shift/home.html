@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/vendors/font-awesome/css/font-awesome.min.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Smenalar Jadvali <a href="{% url 'shift-create' %}"><i class="fa fa-plus-square"></i></a></h4>
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th> Nomi </th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                {% for shift in shift_list %}
+                <tr>
+                  <td>{{ shift }} </td>
+                  <td><a href="{% url 'shift-update' shift.id %}"><i class="fa fa-pencil-square"></i></a></td>   
+                  <td>
+                    <i type="button" class="fa fa-trash-o" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{shift.id}}"> </i>                 
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+  {% for shift in shift_list %}
+  <div class="modal fade" id="staticBackdrop{{shift.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ shift }} ni o'chirmoqchimisiz?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Orqaga</button>
+          <a href="{% url 'shift-delete' shift.id %}" type="button" class="btn btn-primary">O'chirish</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
+
+
+{% block js %}
+{% endblock %}
